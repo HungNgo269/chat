@@ -1,0 +1,12 @@
+{
+  "name": "nodemon",
+  "homepage": "http://nodemon.io",
+  "watch": ["src"],
+  "ext": "ts,json",
+  "exec": "ts-node src/index.ts",
+  "...": "... other standard package.json values",
+  "nodemonConfig": {
+    "ignore": ["**/test/**", "**/docs/**", "**/spec/**"],
+    "delay": 2500
+  }
+}
