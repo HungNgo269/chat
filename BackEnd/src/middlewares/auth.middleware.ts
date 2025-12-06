@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
-import { authService } from "../services/auth/auth.service";
-import { Avatar } from "../types/users.types";
+import { authService } from "@/services/auth/auth.service";
+import { Avatar } from "@/types/users.types";
 
 declare global {
     namespace Express {
@@ -29,13 +29,9 @@ export const authMiddleware = async (
                 message: "Token không được cung cấp",
             });
         }
-        // console.log("authHeader", authHeader);
-
         const access_token = authHeader.split(" ")[1]; // Lấy token sau "Bearer "
-        // console.log("access_token", access_token);
 
         const payload = authService.VerifyAccessToken(access_token);
-        // console.log("payload", payload);
         req.user = {
             userId: payload.user.id,
             avatar: payload.user.avatar,

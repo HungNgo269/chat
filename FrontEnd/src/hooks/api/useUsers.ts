@@ -1,8 +1,7 @@
 import { useQuery, useMutation } from "@tanstack/react-query";
 
-import { userApi } from "../../api/user.api";
-
 import { useAuthStore } from "@/store/auth.store";
+import { userApi } from "@/api/user.api";
 
 export const useSearchUsers = (query: string) => {
     return useQuery({
@@ -18,7 +17,6 @@ export const UseChangeUserProfile = () => {
     return useMutation({
         mutationFn: userApi.changeUserProfile,
         onSuccess: (data) => {
-            console.log("data", data);
             store.setUser(data);
         },
         onError: () => {},

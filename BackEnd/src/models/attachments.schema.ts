@@ -1,5 +1,5 @@
 import { Schema } from "mongoose";
-import { AttachmentType } from "../types/enum.types";
+import { AttachmentType } from "@/types/enum.types";
 
 export const attachmentSchema = new Schema(
     {

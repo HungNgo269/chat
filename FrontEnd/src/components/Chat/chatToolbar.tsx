@@ -3,7 +3,6 @@ import {
     NavbarContent,
     NavbarItem,
 } from "@heroui/navbar";
-import { Mic, PhoneCall, ThumbsUp } from "lucide-react";
 
 import { ChatInput } from "./chatInput";
 

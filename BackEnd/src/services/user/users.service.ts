@@ -1,11 +1,11 @@
-import { UserModel } from "../../models/users.schema";
-import { Avatar, User, UserDTO } from "../../types/users.types";
+import { UserModel } from "@/models/users.schema";
+import { Avatar, User, UserDTO } from "@/types/users.types";
 import bcrypt from "bcrypt";
 import {
     transformDocument,
     transformDocuments,
-} from "../../utils/transformDocument";
-import { RegisterDTO } from "../../types/auth.types";
+} from "@/utils/transformDocument";
+import { RegisterDTO } from "@/types/auth.types";
 import { ObjectId } from "mongodb";
 
 export const userService = {
@@ -24,7 +24,6 @@ export const userService = {
 
     async getById(id: string): Promise<UserDTO> {
         const user = await UserModel.findById(id).select("-password").lean();
-        console.log("ủe", user);
         if (!user) {
             throw new Error("Không tìm thấy người dùng");
         }
@@ -91,7 +90,6 @@ export const userService = {
             const transformed = transformDocuments(result);
             return transformed;
         } catch (error) {
-            console.error("Lỗi tìm kiếm:", error);
             return [];
         }
     },
@@ -105,7 +103,6 @@ export const userService = {
         return user?.avatar ?? null;
     },
     async updateUserProfile(userId: string, payload: Partial<User>) {
-        console.log("check payload", payload);
         if (payload.password) {
             const saltRounds = 10;
             payload.password = await bcrypt.hash(payload.password, saltRounds);

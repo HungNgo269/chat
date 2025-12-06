@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
-import { ConversationService } from "../../services/conversation/conversation.service";
+import { ConversationService } from "@/services/conversation/conversation.service";
 import { ObjectId } from "mongodb";
-import { messageService } from "../../services/message/message.service";
-import { getValidObjectId } from "../../utils/checkValidObjectId";
+import { messageService } from "@/services/message/message.service";
+import { getValidObjectId } from "@/utils/checkValidObjectId";
 export const getConversation = async (req: Request, res: Response) => {
     try {
         const { conversationId } = req.body;
@@ -67,11 +67,9 @@ export const getOrCreateConversation = async (req: Request, res: Response) => {
     try {
         const userID = req.user?.userId;
         const userId = getValidObjectId(userID!);
-        console.log("bodychecking", req.body);
 
         const { friendId } = req.body;
         const friendIdObject = getValidObjectId(friendId!);
-        console.log("userId/friendId", userId, friendId);
 
         if (!userId || !friendIdObject) {
             return res.status(400).json({
@@ -84,14 +82,12 @@ export const getOrCreateConversation = async (req: Request, res: Response) => {
             userId,
             friendIdObject
         );
-        console.log("old", conversation);
         if (!conversation) {
             conversation = await ConversationService.createConversation(
                 userId,
                 friendIdObject
             );
         }
-        console.log("new", conversation);
 
         const messages = await messageService.getAll(conversation.id, 1);
         return res.json({
@@ -102,7 +98,6 @@ export const getOrCreateConversation = async (req: Request, res: Response) => {
             },
         });
     } catch (error) {
-        console.log("err", error);
         return res.status(500).json({
             success: false,
             message: "Lỗi khi xử lý cuộc trò chuyện",

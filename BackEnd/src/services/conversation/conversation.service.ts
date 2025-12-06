@@ -1,16 +1,15 @@
 import { ObjectId } from "mongodb";
-import { ConversationModel } from "../../models/conversations.schema";
+import { ConversationModel } from "@/models/conversations.schema";
 import {
-    Conversation,
     ConversationDTO,
     RecentConversationDTO,
-} from "../../types/conversations.types";
+} from "@/types/conversations.types";
 import {
     transformDocument,
     transformDocuments,
-} from "../../utils/transformDocument";
-import { UserAvatarDTO } from "../../types/users.types";
-import { userService } from "../user/users.service";
+} from "@/utils/transformDocument";
+import { UserAvatarDTO } from "@/types/users.types";
+import { userService } from "@/services/user/users.service";
 
 export const ConversationService = {
     async addUserToConversation(
@@ -76,7 +75,6 @@ export const ConversationService = {
         const newConversation = await ConversationModel.create({
             participants: [userId, friendId],
         });
-        console.log("createConversation", newConversation);
         return transformDocument(newConversation.toObject());
     },
 
@@ -130,7 +128,6 @@ export const ConversationService = {
         ).lean();
 
         if (!conversation) {
-            console.log("Cuoc tro chuyen khong ton tai");
             return null;
         }
         return transformDocument(conversation);
@@ -150,7 +147,6 @@ export const ConversationService = {
             })
             .lean();
         if (!conversation) {
-            console.log("Cuoc tro chuyen khong ton tai");
             return null;
         }
         return transformDocuments(

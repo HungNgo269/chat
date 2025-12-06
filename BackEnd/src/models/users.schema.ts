@@ -1,6 +1,6 @@
-import { InferSchemaType, model, Schema } from "mongoose";
-import { UserRole } from "../types/enum.types";
-import { User } from "../types/users.types";
+import { model, Schema } from "mongoose";
+import { UserRole } from "@/types/enum.types";
+import { User } from "@/types/users.types";
 
 const userSchema = new Schema(
     {

@@ -1,0 +1,21 @@
+# Build stage
+FROM node:lts-alpine AS build
+
+WORKDIR /app
+
+COPY package*.json ./
+RUN npm ci --only=production
+
+COPY . .
+
+# Production stage
+FROM node:lts-alpine
+
+WORKDIR /app
+
+COPY --from=build /app .
+
+EXPOSE 5000
+
+# CMD ["node", "src/index.ts"]
+ CMD ["npm", "start"]

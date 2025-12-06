@@ -8,9 +8,7 @@ class Database {
                 dbName: configEnv.db_name,
                 serverSelectionTimeoutMS: 5000, //tránh treo
             });
-            console.log("Connected with MongoDb");
         } catch (error) {
-            console.error("MongoDB connection error:", error);
             process.exit(1);
         }
     }
@@ -18,9 +16,7 @@ class Database {
     async disConnect(): Promise<void> {
         try {
             await mongoose.disconnect();
-            console.log("DisConnected with MongoDb");
         } catch (error) {
-            console.error("MongoDB connection error:", error);
             process.exit(1);
         }
     }

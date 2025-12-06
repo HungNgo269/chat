@@ -1,0 +1,28 @@
+# Build stage
+FROM node:lts AS build
+
+WORKDIR /app
+
+COPY package*.json ./
+RUN npm ci
+
+COPY . .
+
+# Build React app
+RUN npm run build
+
+# Production stage với Nginx
+FROM nginx:alpine
+
+WORKDIR /usr/share/nginx/html
+
+# Xóa file mặc định của Nginx
+RUN rm -rf ./*
+
+# Copy build từ stage trước
+COPY --from=build /app/dist .
+# Expose port 80
+EXPOSE 80
+
+# Nginx sẽ chạy ở foreground
+CMD ["nginx", "-g", "daemon off;"]

@@ -1,7 +1,6 @@
 import { Request, Response } from "express";
-import { FriendService } from "../../services/friend/friend.service";
-import { getValidObjectId } from "../../utils/checkValidObjectId";
-import { FriendModel } from "../../models/friends.schema";
+import { FriendService } from "@/services/friend/friend.service";
+import { getValidObjectId } from "@/utils/checkValidObjectId";
 
 export const sendFriendRequest = async (req: Request, res: Response) => {
     const userId = req.user?.userId;
@@ -27,7 +26,6 @@ export const sendFriendRequest = async (req: Request, res: Response) => {
             senderObjId,
             receiverObjId
         );
-        console.log("data", data);
         return res.status(201).json({ success: true, data });
     } catch (err: any) {
         return res.status(400).json({ success: false, message: err.message });
@@ -63,9 +61,6 @@ export const getUserRelationStatus = async (req: Request, res: Response) => {
 export const acceptFriendRequest = async (req: Request, res: Response) => {
     const userId = req.user?.userId;
     const { friendId } = req.body;
-    console.log("--- DEBUG ACCEPT ---");
-    console.log("1. User đang login (Recipient):", userId);
-    console.log("2. ID gửi lên từ FE (Requester):", friendId);
     if (!userId || !friendId) {
         return res.status(400).json({ success: false, message: "Lỗi tham số" });
     }
@@ -80,8 +75,6 @@ export const acceptFriendRequest = async (req: Request, res: Response) => {
     }
 
     try {
-        console.log("3. User ObjectId:", getValidObjectId(userId));
-        console.log("4. Friend ObjectId:", getValidObjectId(friendId));
         const data = await FriendService.acceptFriendRequest(
             userObjId,
             friendObjId
@@ -163,7 +156,11 @@ export const unfriend = async (req: Request, res: Response) => {
         await FriendService.unfriend(userObjId, friendObjId);
         return res
             .status(200)
-            .json({ success: true, message: "Đã hủy kết bạn thành công", data:null });
+            .json({
+                success: true,
+                message: "Đã hủy kết bạn thành công",
+                data: null,
+            });
     } catch (err: any) {
         return res.status(400).json({ success: false, message: err.message });
     }

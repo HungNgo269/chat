@@ -4,14 +4,14 @@ import {
     FriendDTO,
     FriendList,
     FriendRequestResponse,
-} from "../../types/friend.types";
-import { FriendModel } from "../../models/friends.schema";
-import { DbFriendStatus, UserRelationStatus } from "../../types/enum.types";
+} from "@/types/friend.types";
+import { FriendModel } from "@/models/friends.schema";
+import { DbFriendStatus, UserRelationStatus } from "@/types/enum.types";
 import {
     transformDocument,
     transformDocuments,
-} from "../../utils/transformDocument";
-import { User, UserAvatarDTO } from "../../types/users.types";
+} from "@/utils/transformDocument";
+import { User, UserAvatarDTO } from "@/types/users.types";
 
 export const FriendService = {
     async sendFriendRequest(
@@ -102,9 +102,6 @@ export const FriendService = {
             requester: userId,
             recipient: requesterId,
         }).lean();
-        console.log("friendship", friendship);
-        console.log("friendship2", friendship2);
-        console.log("friendship3", friendship3);
 
         if (!friendship) {
             throw new Error("Lời mời kết bạn không tồn tại hoặc đã bị hủy");
@@ -115,7 +112,6 @@ export const FriendService = {
             { status: DbFriendStatus.ACCEPTED },
             { new: true }
         ).lean();
-        console.log("updatedFriendship", updatedFriendship);
         if (!updatedFriendship) throw new Error("Lỗi cập nhật trạng thái");
 
         return transformDocument(updatedFriendship);
@@ -207,9 +203,6 @@ export const FriendService = {
                 select: " name avatar",
             })
             .lean<FriendRequestResponse[]>();
-        console.log("chec1", friendRequests);
-
-        console.log("chec", transformDocuments(friendRequests));
         return transformDocuments(friendRequests);
     },
 };

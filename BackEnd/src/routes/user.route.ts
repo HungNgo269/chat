@@ -6,8 +6,8 @@ import {
     searchUser,
     updateProfile,
     updateUser,
-} from "../controllers/user/users.controllers";
-import { authMiddleware } from "../middlewares/auth.middleware";
+} from "@/controllers/user/users.controllers";
+import { authMiddleware } from "@/middlewares/auth.middleware";
 
 const UserRouter = Router();
 UserRouter.use(authMiddleware);

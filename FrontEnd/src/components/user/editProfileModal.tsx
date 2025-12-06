@@ -1,4 +1,3 @@
-import React, { useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
 import {
     Modal,
@@ -9,10 +8,10 @@ import {
 } from "@heroui/modal";
 import { Button } from "@heroui/button";
 import { Input } from "@heroui/input";
+import toast from "react-hot-toast";
 
 import { UseChangeUserProfile } from "@/hooks/api/useUsers";
 import { User } from "@/interfaces/user";
-import toast from "react-hot-toast";
 
 export type FieldType = {
     id: keyof User;

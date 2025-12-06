@@ -5,7 +5,6 @@ import { UpdateProfileData, User } from "@/interfaces/user";
 export const userApi = {
     searchUsers: async (query: string) => {
         const result = await axiosClient.get(`/users/search?query=${query}`);
-        console.log("search", result);
         return result.data;
     },
     changeUserProfile: async (data: UpdateProfileData) => {
@@ -21,7 +20,6 @@ export const userApi = {
 
     getUserById: async (id: string) => {
         const result = await axiosClient.get(`/users/${id}`);
-        console.log("getuserbyID", result.data);
         return result.data as User;
     },
 

@@ -43,7 +43,6 @@ export const useSendFriendRequest = () => {
         mutationFn: friendApi.sendFriendRequest,
         onSuccess: (_, variables) => {
             invalidate(variables);
-            console.log("Đã gửi lời mời");
         },
     });
 };
@@ -55,7 +54,6 @@ export const useAcceptFriendRequest = () => {
         mutationFn: friendApi.acceptFriendRequest,
         onSuccess: (_, variables) => {
             invalidate(variables);
-            console.log("Đã chấp nhận");
         },
     });
 };
@@ -67,7 +65,6 @@ export const useCancelFriendRequest = () => {
         mutationFn: friendApi.cancelFriendRequest,
         onSuccess: (_, variables) => {
             invalidate(variables);
-            console.log("Đã hủy lời mời");
         },
     });
 };
@@ -79,7 +76,6 @@ export const useRejectFriendRequest = () => {
         mutationFn: friendApi.rejectFriendRequest,
         onSuccess: (_, variables) => {
             invalidate(variables);
-            console.log("Đã từ chối");
         },
     });
 };
@@ -91,7 +87,6 @@ export const useUnfriend = () => {
         mutationFn: friendApi.unfriend,
         onSuccess: (_, variables) => {
             invalidate(variables);
-            console.log("Đã hủy kết bạn");
         },
     });
 };

@@ -1,5 +1,5 @@
 import { InferSchemaType, model, Schema, Types } from "mongoose";
-import { DbFriendStatus, UserRelationStatus } from "../types/enum.types";
+import { DbFriendStatus } from "@/types/enum.types";
 
 const FriendSchema = new Schema(
     {

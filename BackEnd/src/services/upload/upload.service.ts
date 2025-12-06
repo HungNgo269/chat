@@ -1,8 +1,8 @@
-import cloudinary from "../../config/cloudinary";
-import { UploadImageType } from "../../types/uploadImageType";
+import cloudinary from "@/config/cloudinary";
+import { UploadImageType } from "@/types/uploadImageType";
 import { Readable } from "stream";
-import { UserModel } from "../../models/users.schema";
-import { getValidObjectId } from "../../utils/checkValidObjectId";
+import { UserModel } from "@/models/users.schema";
+import { getValidObjectId } from "@/utils/checkValidObjectId";
 import { ObjectId } from "mongodb";
 
 export const uploadService = {
@@ -50,12 +50,8 @@ export const uploadService = {
             try {
                 await cloudinary.uploader.destroy(user.avatar.publicId);
             } catch (error) {
-                console.error("Lỗi khi xóa ảnh cũ trên Cloudinary:", error);
             }
         }
-        console.log("checkupdated", validUserId);
-        console.log("checkupdated1", newImage.secure_url);
-        console.log("checkupdated2", newImage.public_id);
 
         await UserModel.findByIdAndUpdate(validUserId, {
             avatar: {

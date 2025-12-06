@@ -4,6 +4,10 @@ dotenv.config();
 
 export const configEnv = {
     frontEnd_Url: process.env.FRONTEND_URL || "http://localhost:3000",
+    allowedOrigins: process.env.ALLOWED_ORIGINS
+        ? process.env.ALLOWED_ORIGINS.split(",")
+        : ["http://localhost", "http://localhost:3000"],
+
     port: process.env.PORT || 5000,
     mongo_url: process.env.MONGO_URL!,
     db_name: process.env.DB_NAME!,

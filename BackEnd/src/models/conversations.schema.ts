@@ -1,5 +1,5 @@
-import { InferSchemaType, model, Schema, Types } from "mongoose";
-import { Conversation } from "../types/conversations.types";
+import { model, Schema } from "mongoose";
+import { Conversation } from "@/types/conversations.types";
 
 const ConversationSchema = new Schema(
     {

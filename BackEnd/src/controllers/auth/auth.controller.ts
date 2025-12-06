@@ -1,9 +1,7 @@
 import { Request, Response } from "express";
-import { authService } from "../../services/auth/auth.service";
-import { configEnv } from "../../config/env";
-import { RegisterInput } from "../../schema/auth.schema";
-import { userService } from "../../services/user/users.service";
-import { UserDTO } from "../../types/users.types";
+import { authService } from "@/services/auth/auth.service";
+import { configEnv } from "@/config/env";
+import { RegisterInput } from "@/schema/auth.schema";
 
 export const Register = async (req: Request, res: Response) => {
     const { email, name, password } = req.body as RegisterInput;
@@ -82,7 +80,6 @@ export const Logout = async (req: Request, res: Response) => {
         });
     } catch (error: unknown) {
         const err = error as Error;
-        console.log("err", err);
         return res.status(401).json({
             success: false,
             message: err.message,

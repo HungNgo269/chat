@@ -1,15 +1,15 @@
-import { configEnv } from "../../config/env";
-import { UserModel } from "../../models/users.schema";
-import { LoginDTO, RegisterDTO } from "../../types/auth.types";
-import { TokenPayload } from "../../types/payload.types";
-import { UserDTO } from "../../types/users.types"; // Đảm bảo type này khớp
+import { configEnv } from "@/config/env";
+import { UserModel } from "@/models/users.schema";
+import { LoginDTO, RegisterDTO } from "@/types/auth.types";
+import { TokenPayload } from "@/types/payload.types";
+import { UserDTO } from "@/types/users.types"; // Đảm bảo type này khớp
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import { transformDocument } from "../../utils/transformDocument";
+import { transformDocument } from "@/utils/transformDocument";
 import {
     refresh_tokenType,
     RefreshModel,
-} from "../../models/refreshToken.schema";
+} from "@/models/refreshToken.schema";
 
 export const authService = {
     async Register(userData: RegisterDTO): Promise<RegisterDTO> {

@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { userService } from "../../services/user/users.service";
+import { userService } from "@/services/user/users.service";
 
 export const getUsers = async (req: Request, res: Response) => {
     try {
@@ -92,7 +92,6 @@ export const updateProfile = async (req: Request, res: Response) => {
             .json({ success: false, message: "Không có quyền" });
     }
     try {
-        console.log("check body", req.body);
         if (req.body === "avatar") {
         }
         const result = await userService.updateUserProfile(userId, req.body);

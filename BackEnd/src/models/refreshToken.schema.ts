@@ -1,4 +1,4 @@
-import mongoose, { Schema, Document, InferSchemaType, model } from "mongoose";
+import { Schema, InferSchemaType, model } from "mongoose";
 
 const refresh_tokenSchema = new Schema({
     token: { type: String, required: true, unique: true },

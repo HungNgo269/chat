@@ -9,7 +9,6 @@ export const authApi = {
         const user = result.data.user;
 
         useTokenStore.getState().setAccessToken(result.data.access_token);
-        console.log("user", user);
 
         return user;
     },
@@ -29,7 +28,6 @@ export const authApi = {
     },
     checkAuth: async () => {
         const response = await axiosClient.post("/auth/me");
-        console.log("res", response);
 
         if (response.data) {
             useAuthStore.getState().setUser(response.data.user);

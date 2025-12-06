@@ -1,12 +1,12 @@
 import { ObjectId } from "mongodb";
-import { ConversationModel } from "../../models/conversations.schema";
-import { MessageModel } from "../../models/messages.schema";
-import { Attachment } from "../../types/attachment.types";
-import { MessageDTO } from "../../types/messages.types";
+import { ConversationModel } from "@/models/conversations.schema";
+import { MessageModel } from "@/models/messages.schema";
+import { Attachment } from "@/types/attachment.types";
+import { MessageDTO } from "@/types/messages.types";
 import {
     transformDocument,
     transformDocuments,
-} from "../../utils/transformDocument";
+} from "@/utils/transformDocument";
 
 export const messageService = {
     async create(

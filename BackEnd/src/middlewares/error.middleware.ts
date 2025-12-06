@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import AppError from "../utils/appError";
+import AppError from "@/utils/appError";
 
 const errorMiddleware = (
     err: any,
@@ -9,8 +9,6 @@ const errorMiddleware = (
 ) => {
     err.statusCode = err.statusCode || 500;
     err.status = err.status || "error";
-
-    console.error("ERROR :", err);
 
     if (err.name === "CastError") err = new AppError("ID không hợp lệ", 400);
     if (err.code === 11000)

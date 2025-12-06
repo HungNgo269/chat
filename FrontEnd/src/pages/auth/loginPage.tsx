@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
 import { LoginForm } from "@/components/auth/loginForm";
@@ -7,12 +6,9 @@ export default function LoginPage() {
     const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
     const user = useAuthStore((state) => state.user);
 
-    const navigate = useNavigate();
-
     useEffect(() => {
         const checkLogin = () => {
             if (isAuthenticated || user) {
-                console.log("ok");
             }
         };
 

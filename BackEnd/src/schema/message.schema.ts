@@ -1,6 +1,6 @@
 import { z } from "zod";
-import { AttachmentType } from "../types/enum.types";
-import { zodObjectId } from "../utils/zodObjectId";
+import { AttachmentType } from "@/types/enum.types";
+import { zodObjectId } from "@/utils/zodObjectId";
 
 const attachmentSchema = z.object({
     secure_url: z.string().min(1),

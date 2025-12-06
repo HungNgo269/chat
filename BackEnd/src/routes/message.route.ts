@@ -2,10 +2,10 @@ import { Router } from "express";
 import {
     getMessages,
     sendMessage,
-} from "../controllers/message/messsages.controllers";
-import { validate } from "../middlewares/validate";
-import { sendMessageSchema } from "../schema/message.schema";
-import { authMiddleware } from "../middlewares/auth.middleware";
+} from "@/controllers/message/messsages.controllers";
+import { validate } from "@/middlewares/validate";
+import { sendMessageSchema } from "@/schema/message.schema";
+import { authMiddleware } from "@/middlewares/auth.middleware";
 
 const MessageRouter = Router();
 MessageRouter.use(authMiddleware);

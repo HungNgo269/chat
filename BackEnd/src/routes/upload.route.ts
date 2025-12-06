@@ -1,7 +1,7 @@
 import { Router } from "express";
-import upload from "../middlewares/multer.middleware";
-import { handleUploadImage } from "../controllers/upload/upload.controllers";
-import { authMiddleware } from "../middlewares/auth.middleware";
+import upload from "@/middlewares/multer.middleware";
+import { handleUploadImage } from "@/controllers/upload/upload.controllers";
+import { authMiddleware } from "@/middlewares/auth.middleware";
 
 const UploadRouter = Router();
 UploadRouter.use(authMiddleware);

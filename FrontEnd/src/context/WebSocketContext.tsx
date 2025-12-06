@@ -78,7 +78,7 @@ export const WebSocketProvider = ({ children }: { children: ReactNode }) => {
         const connectWebSocket = () => {
             if (wsRef.current?.readyState === WebSocket.OPEN || !userId) return;
 
-            const ws = new WebSocket(`${import.meta.env.VITE_BACKEND_URL}`);
+            const ws = new WebSocket(`${import.meta.env.VITE_SOCKET_URL}`);
 
             wsRef.current = ws;
 
@@ -98,7 +98,6 @@ export const WebSocketProvider = ({ children }: { children: ReactNode }) => {
             ws.onmessage = (event) => {
                 try {
                     const data = JSON.parse(event.data);
-                    console.log("checkl data messsage", data);
                     if (data.type === "NEW_MESSAGE" && data.data) {
                         handleNewMessage(data.data);
                     }
@@ -148,7 +147,6 @@ export const WebSocketProvider = ({ children }: { children: ReactNode }) => {
 
     const sendMessage = useCallback((data: MessageSend) => {
         if (wsRef.current?.readyState === WebSocket.OPEN) {
-            console.log("messsage send data", JSON.stringify(data));
             wsRef.current.send(JSON.stringify(data));
 
             return true;

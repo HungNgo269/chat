@@ -15,13 +15,10 @@ export const friendApi = {
 
     getUserRelationStatus: async (friendId: string) => {
         const result = await axiosClient.get(`/friend/status/${friendId}`);
-        console.log("first", result.data);
         return result.data;
     },
     sendFriendRequest: async (friendId: string) => {
         const result = await axiosClient.post("/friend/send", { friendId });
-
-        console.log("ressult", result.data);
 
         return result.data;
     },
@@ -29,15 +26,11 @@ export const friendApi = {
     acceptFriendRequest: async (friendId: string) => {
         const result = await axiosClient.patch("/friend/accept", { friendId });
 
-        console.log("ressult", result.data);
-
         return result.data;
     },
 
     cancelFriendRequest: async (friendId: string) => {
         const result = await axiosClient.delete(`/friend/cancel/${friendId}`);
-
-        console.log("ressult", result.data);
 
         return result.data;
     },
@@ -45,15 +38,11 @@ export const friendApi = {
     rejectFriendRequest: async (friendId: string) => {
         const result = await axiosClient.delete(`/friend/reject/${friendId}`);
 
-        console.log("ressult", result.data);
-
         return result.data;
     },
 
     unfriend: async (friendId: string) => {
         const result = await axiosClient.delete(`/friend/${friendId}`);
-
-        console.log("ressult", result.data);
 
         return result.data;
     },

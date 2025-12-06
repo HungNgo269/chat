@@ -62,14 +62,11 @@ export default function UserProfile() {
             const formData = new FormData();
 
             formData.append("AvatarImage", file);
-            console.log("file?", formData.get("AvatarImage"));
 
             try {
                 const uploadResult =
                     await uploadApi.uploadImageAvatar(formData);
                 const uploadedData = uploadResult;
-
-                console.log("uploadedData", uploadedData);
 
                 store.setUser({
                     ...user,

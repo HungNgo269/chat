@@ -8,8 +8,8 @@ import {
     rejectFriendRequest,
     sendFriendRequest,
     unfriend,
-} from "../controllers/friend/friends.controller";
-import { authMiddleware } from "../middlewares/auth.middleware";
+} from "@/controllers/friend/friends.controller";
+import { authMiddleware } from "@/middlewares/auth.middleware";
 
 const FriendRouter = Router();
 

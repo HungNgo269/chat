@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { messageService } from "../../services/message/message.service";
-import { getValidObjectId } from "../../utils/checkValidObjectId";
+import { messageService } from "@/services/message/message.service";
+import { getValidObjectId } from "@/utils/checkValidObjectId";
 
 export const sendMessage = async (req: Request, res: Response) => {
     const { conversationId, receiverId, text, attachments } = req.body;

@@ -1,8 +1,9 @@
 import WebSocket, { WebSocketServer } from "ws";
 import type { Server } from "http";
-import { messageService } from "../services/message/message.service";
-import { MessageDTO } from "../types/messages.types";
-import { ConversationService } from "../services/conversation/conversation.service";
+import { messageService } from "@/services/message/message.service";
+import { MessageDTO } from "@/types/messages.types";
+import { ConversationService } from "@/services/conversation/conversation.service";
+import { configEnv } from "@/config/env";
 interface Client {
     ws: WebSocket;
     userId: string;
@@ -10,10 +11,26 @@ interface Client {
 }
 
 export const InitializeWebsocket = ({ server }: { server: Server }) => {
-    const wss = new WebSocketServer({ server });
-    // Map: userId -> WebSocket để track online users
-    // ToDO sử dụng redis
-    // có thể tạo đoạn chat nhiều người.
+    const wss = new WebSocketServer({
+        server,
+        path: "/ws",
+        verifyClient: (info, callback) => {
+            const origin = info.origin;
+
+            if (!origin) {
+                return callback(true);
+            }
+
+            if (configEnv.allowedOrigins.includes(origin)) {
+                callback(true);
+            } else {
+                callback(false, 403, "Forbidden");
+            }
+        },
+    });
+    // TODO: chat nhiều người + hiển thị trạng thái user (online, offline) + typing ui ux, thông báo khi người dùng nhận kết bạn
+    // Map: userId -> WebSocket để track online friend
+    // TODO: sử dụng redis
     const onlineUsers = new Map<string, Set<WebSocket>>();
     function addOnline(userId: string, ws: WebSocket) {
         if (!onlineUsers.has(userId)) onlineUsers.set(userId, new Set());
@@ -61,7 +78,6 @@ export const InitializeWebsocket = ({ server }: { server: Server }) => {
                         );
                         return;
                     }
-                    console.log("payload", payload);
                     const newMessage: MessageDTO = await messageService.create(
                         payload.senderId,
                         payload.conversationId,
@@ -69,7 +85,6 @@ export const InitializeWebsocket = ({ server }: { server: Server }) => {
                         payload?.text,
                         payload?.attachments
                     );
-                    console.log("newMessage", newMessage);
 
                     if (newMessage) {
                         for (const participantId of currentConversation.participants) {
@@ -128,7 +143,6 @@ export const InitializeWebsocket = ({ server }: { server: Server }) => {
                     }
                 }
             } catch (error) {
-                console.error("Lỗi khi xử lý tin nhắn:", error);
                 ws.send(
                     JSON.stringify({
                         type: "ERROR",

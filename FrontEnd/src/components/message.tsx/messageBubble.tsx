@@ -16,8 +16,6 @@ export const MessageBubble = forwardRef<HTMLDivElement, MessageBubbleProps>(
         const isCurrentUser = message.senderId === currentUser.id;
         const { data: user } = useUser(message.senderId);
 
-        console.log("data", user, message.senderId);
-
         return (
             <div
                 ref={ref}

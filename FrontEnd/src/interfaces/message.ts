@@ -1,6 +1,5 @@
 import { Attachment } from "./attachment";
 import { MessageStatus } from "./enums";
-import { Avatar } from "./user";
 
 export interface Message {
     id: string;

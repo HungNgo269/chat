@@ -29,8 +29,6 @@ export const SideBar = () => {
 
     const isSearching = debounceQuery.length > 0;
 
-    console.log("side conversations", conversations);
-
     const sortedConversationFunction = useMemo(() => {
         if (!conversations) {
             return [];

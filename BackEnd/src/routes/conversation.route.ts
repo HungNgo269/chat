@@ -7,8 +7,8 @@ import {
     getOrCreateConversation,
     getRecentConversation,
     searchConversation,
-} from "../controllers/conversation/conversations.controllers";
-import { authMiddleware } from "../middlewares/auth.middleware";
+} from "@/controllers/conversation/conversations.controllers";
+import { authMiddleware } from "@/middlewares/auth.middleware";
 
 const ConversationRouter = Router();
 ConversationRouter.use(authMiddleware);

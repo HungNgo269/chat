@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { uploadService } from "../../services/upload/upload.service";
+import { uploadService } from "@/services/upload/upload.service";
 
 export const handleUploadImage = async (
     req: Request,
@@ -8,7 +8,6 @@ export const handleUploadImage = async (
 ) => {
     try {
         const userId = req.user?.userId;
-        console.log("user", userId);
         if (!req.file) {
             return res.status(400).json({ success: false, message: "File trống!" });
         }
@@ -37,7 +36,6 @@ export const handleUploadImage = async (
             },
         });
     } catch (error) {
-        console.error("Lỗi khi tải ảnh lên:", error);
         next(error);
     }
 };

@@ -5,9 +5,9 @@ import {
     Logout,
     Refresh,
     Register,
-} from "../controllers/auth/auth.controller";
-import { validate } from "../middlewares/validate";
-import { registerSchema } from "../schema/auth.schema";
+} from "@/controllers/auth/auth.controller";
+import { validate } from "@/middlewares/validate";
+import { registerSchema } from "@/schema/auth.schema";
 
 const AuthRouter = Router();
 AuthRouter.post("/login", Login);
